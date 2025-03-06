@@ -9,13 +9,17 @@ import { Button } from '@/components/ui/button';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Create Account',
+        title: 'Accounts',
         href: '/accounts',
+    },
+    {
+        title: 'Create Account',
+        href: '/accounts/create',
     },
 ];
 
 const page = usePage();
-console.log(page.props['csrf_token'])
+
 </script>
 
 <template>

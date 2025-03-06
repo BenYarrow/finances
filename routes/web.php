@@ -13,7 +13,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    Route::get('accounts', [AccountsController::class, 'index'])->name('accounts');
+    Route::name('accounts.')->prefix('/accounts')->group(function () {
+        Route::get('/', [AccountsController::class, 'index'])->name('index');
+
+        Route::get('/create', [AccountsController::class, 'create'])->name('create');
+        Route::post('/', [AccountsController::Class, 'store'])->name('store');
+
+        // Route::get('/{account}/edit', [AccountsController::class, 'edit'])->name('edit');
+        // Route::get('/{account}/edit', [AccountsController::class, 'edit'])->name('edit');
+    });
 });
 
 require __DIR__.'/settings.php';

@@ -27,6 +27,7 @@ export interface User {
     id: number;
     name: string;
     email: string;
+    accounts: Account[];
     avatar?: string;
     email_verified_at: string | null;
     created_at: string;
@@ -34,3 +35,12 @@ export interface User {
 }
 
 export type BreadcrumbItemType = BreadcrumbItem;
+
+export interface Account {
+    id: number;
+    user_id: number;
+    user: User;
+    name: string;
+    company: string;
+    type: string;
+}

@@ -4,6 +4,8 @@ import { type BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/vue3';
 import { Account } from '@/types';
 import Icon from '@/components/Icon.vue';
+import EditAccountModal from '@/components/accounts/EditAccountModal.vue';
+import DeleteAccountModal from '@/components/accounts/DeleteAccountModal.vue';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -15,6 +17,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 defineProps<{
     accounts: Account[];
 }>();
+
 </script>
 
 <template>
@@ -25,7 +28,9 @@ defineProps<{
             <div>
                 <div class="prose max-w-none flex items-center justify-between">
                     <h2>
-                        Overview
+                        <marquee>
+                            Overview
+                        </marquee>
                     </h2>
 
                     <Link :href="route('accounts.create')" class="flex items-center gap-x-1 no-underline hover:underline group px-3 py-1 bg-primary rounded-md text-white hover:bg-primary-lighter">
@@ -33,15 +38,22 @@ defineProps<{
                     </Link>
 
                 </div>
-                <p class="prose">
+                <marquee class="prose">
                     Easily access and manage all your bank accounts in one place. Stay on top of your finances with detailed information about each account, including account names, balances, and recent transactions.
-                </p>
+                </marquee>
             </div>
+
             <ul class="grid grid-cols-1 md:grid-cols-2 gap-8 xl:gap-12">
-                <li v-for="account in accounts" :key="account.id" class="relative p-8 bg-sidebar flex justify-between border border-primary rounded-md">
-                    <button class="absolute top-2 right-2 p-1 rounded bg-red-600 text-white">
-                        <Icon :name="'minus'" class="group-hover:scale-[1.3] transition-transform duration-300" />
-                    </button>
+                <li
+                    v-for="account in accounts"
+                    :key="account.id"
+                    class="relative p-8 bg-sidebar flex justify-between border border-primary rounded-md"
+                >
+
+                    <div class="absolute top-2 right-2 flex items-center gap-x-2">
+                        <EditAccountModal :account="account"/>
+                        <DeleteAccountModal :account="account"/>
+                    </div>
 
                     <div>
                         Image goes here

@@ -14,13 +14,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 
     Route::name('accounts.')->prefix('/accounts')->group(function () {
+        // index (show all accounts)
         Route::get('/', [AccountsController::class, 'index'])->name('index');
 
+        // show create account form (unless in a modal)
         Route::get('/create', [AccountsController::class, 'create'])->name('create');
+        // save created account from form
         Route::post('/', [AccountsController::Class, 'store'])->name('store');
 
-        // Route::get('/{account}/edit', [AccountsController::class, 'edit'])->name('edit');
-        // Route::get('/{account}/edit', [AccountsController::class, 'edit'])->name('edit');
+        // save changes to a specific account
+        Route::post('/{account}', [AccountsController::class, 'update'])->name('update');
+
+        // delete account
+        Route::delete('/{account}', [AccountsController::class, 'destroy'])->name('destroy');
     });
 });
 

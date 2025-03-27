@@ -1,25 +1,24 @@
 <script setup lang="ts">
-import AppLayout from '@/layouts/AppLayout.vue';
-import { type BreadcrumbItem } from '@/types';
-import { Head, usePage } from '@inertiajs/vue3';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Button } from '@/components/ui/button';
+    import AppLayout from '@/layouts/AppLayout.vue';
+    import { type BreadcrumbItem } from '@/types';
+    import { Head, usePage } from '@inertiajs/vue3';
+    import { Input } from '@/components/ui/input';
+    import { Label } from '@/components/ui/label';
+    import { Button } from '@/components/ui/button';
 
 
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Accounts',
-        href: '/accounts',
-    },
-    {
-        title: 'Create Account',
-        href: '/accounts/create',
-    },
-];
+    const breadcrumbs: BreadcrumbItem[] = [
+        {
+            title: 'Accounts',
+            href: '/accounts',
+        },
+        {
+            title: 'Create Account',
+            href: '/accounts/create',
+        },
+    ];
 
-const page = usePage();
-
+    const page = usePage();
 </script>
 
 <template>
@@ -51,7 +50,7 @@ const page = usePage();
                     type="text"
                 />
 
-                <Button type="submit">
+                <Button type="submit" class="mt-2">
                     Create
                 </Button>
             </Form>
